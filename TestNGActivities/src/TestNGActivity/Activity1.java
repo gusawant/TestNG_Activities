@@ -1,4 +1,4 @@
-package TestNGActivity1;
+package TestNGActivity;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
@@ -22,27 +22,20 @@ public class Activity1 {
 	public void exampleTestCase() {
 
 		// Check the title of the page
-
 		String title = driver.getTitle();
 
 		// Print the title of the page
-
 		System.out.println("Page title is: " + title);
 
 		// Assertion for page title
-
 		Assert.assertEquals("Training Support", title);
 
-		// Find the clickable link on the page and click it
-		
-		WebDriverWait dw = new WebDriverWait(driver, 45);
-
-		WebElement element = dw.until(ExpectedConditions.visibilityOfElementLocated(By.id("about-link")));
-		
-		element.click();
+		// Find the clickable link on the page and click it		
+		WebDriverWait wait = new WebDriverWait(driver, 45);
+		WebElement aboutUs = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("about-link")));
+		aboutUs.click();
 
 		// Print title of new page
-
 		System.out.println("New page title is: " + driver.getTitle());
 
 		Assert.assertEquals(driver.getTitle(), "About Training Support");
@@ -56,7 +49,6 @@ public class Activity1 {
 		driver = new FirefoxDriver();
 
 		// Open browser
-
 		driver.get("https://www.training-support.net");
 		driver.manage().window().maximize();		
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
@@ -68,7 +60,6 @@ public class Activity1 {
 	public void afterMethod() {
 
 		// Close the browser
-
 		driver.quit();
 
 	}
